@@ -24,11 +24,58 @@ assignees:
 
 status-website:
   cname: status.finque.de
-  logoUrl: https://raw.githubusercontent.com/finflow-io/finque-status/master/assets/finque-icon.svg
+  # Same look as developers.finque.de: wordmark logo, "Status" next to it,
+  # Sofia Pro (served by developers.finque.de, see the font license) and the
+  # finque palette for light and dark mode.
+  logoUrl: https://raw.githubusercontent.com/finflow-io/finque-status/master/assets/finque-logo.svg
+  hideNavTitle: true
   favicon: https://raw.githubusercontent.com/finflow-io/finque-status/master/assets/favicon.svg
   name: finque Status
   introTitle: "**finque Status**"
   introMessage: Hier siehst du, ob die Dienste von finque erreichbar sind. Störungen und geplante Wartungen veröffentlichen wir an dieser Stelle.
+  css: |
+    @font-face { font-family: "Sofia Pro"; src: url("https://developers.finque.de/fonts/sofiapro-regular-webfont.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Sofia Pro"; src: url("https://developers.finque.de/fonts/sofiapro-medium-webfont.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Sofia Pro"; src: url("https://developers.finque.de/fonts/sofiapro-bold-webfont.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    :root {
+      --finque-ink: #0e0e16; --finque-iris: #5b4bff; --finque-graphite: #6b6b7b; --finque-border: #e6e6ee; --finque-surface: #ffffff; --finque-paper: #f6f6f9;
+      --body-background-color: #ffffff; --body-text-color: #0e0e16; --card-background-color: #ffffff; --card-border-color: #e6e6ee;
+      --nav-background-color: #ffffff; --nav-border-bottom-color: #e6e6ee; --nav-current-border-bottom-color: #5b4bff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --finque-graphite: #a0a0ae; --finque-border: #2a2a36; --finque-surface: #17171f;
+        --body-background-color: #0e0e16; --body-text-color: #ffffff; --card-background-color: #17171f; --card-border-color: #2a2a36;
+        --nav-background-color: #0e0e16; --nav-border-bottom-color: #2a2a36;
+      }
+      nav .logo img { filter: invert(1); }
+    }
+    body { font-family: "Sofia Pro", ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    nav { font-weight: 400; margin-bottom: 2.5rem; background: var(--nav-background-color); border-bottom: 1px solid var(--nav-border-bottom-color); }
+    nav .container { height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    nav .logo img { height: 22px !important; width: auto !important; }
+    nav .logo::after { content: "Status"; padding-left: 12px; border-left: 1px solid var(--finque-border); color: var(--finque-graphite); font-size: 14px; font-weight: 500; }
+    nav ul { gap: 24px; }
+    nav ul a { color: var(--finque-graphite); font-size: 14px !important; font-weight: 500 !important; padding: 18px 0 16px !important; text-decoration: none; }
+    nav ul a:hover, nav ul a[aria-current] { color: var(--body-text-color); }
+    [aria-current] { border-bottom-color: var(--finque-iris) !important; }
+    h1, h2 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.25rem; }
+    p.lead, header p { color: var(--finque-graphite); }
+    article { border-radius: 10px; border: 1px solid var(--card-border-color); box-shadow: none; }
+    a:focus-visible { outline: 2px solid var(--finque-iris); outline-offset: 3px; border-radius: 4px; }
+    footer { display: none; }
+  js: |
+    // Upptime shows "Completed" untranslated for past maintenance.
+    const finqueTranslate = () => document.querySelectorAll("main div").forEach((d) => {
+      if (d.childElementCount === 0 && d.textContent.trim() === "Completed") d.textContent = "Abgeschlossen";
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+      finqueTranslate();
+      new MutationObserver(finqueTranslate).observe(document.body, { subtree: true, childList: true });
+    });
   navbar:
     - title: Status
       href: /
@@ -64,7 +111,7 @@ i18n:
   ms: ms
   loading: Wird geladen …
   navGitHub: GitHub
-  footer: Diese Seite ist [quelloffen]($REPO) und läuft mit [Upptime](https://upptime.js.org).
+  footer: ""
   rateLimitExceededTitle: Zu viele Abrufe
   rateLimitExceededIntro: Du hast diese Seite in der letzten Stunde sehr oft aufgerufen. Bitte warte etwas, bevor du sie erneut lädst. Alternativ kannst du einen eigenen GitHub-Token hinterlegen.
   rateLimitExceededWhatDoesErrorMean: Was bedeutet das?
