@@ -1,31 +1,99 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Upptime configuration for status.finque.de
+# Every public domain and every public API endpoint of finque has a monitor
+# here (see CLAUDE.md in finflow-io/finque). Docs: https://upptime.js.org/docs/configuration
+
+owner: finflow-io
+repo: finque-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  # Not live until the production launch; enable it together with app.finque.de.
+  # - name: App
+  #   url: https://app.finque.de
+  - name: Entwicklung
+    url: https://dev.finque.de
+  - name: API-Dokumentation
+    url: https://developers.finque.de
+  - name: API
+    # Health endpoint of the api Edge Function (finque-dev). Switches to
+    # https://api.finque.de/functions/v1/api/health with the production launch.
+    url: https://tugraidqyulnrqbimxje.supabase.co/functions/v1/api/health
+
+# Outages open an issue assigned here; GitHub notifies by email.
+assignees:
+  - christian-finflow
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.finque.de
+  logoUrl: https://raw.githubusercontent.com/finflow-io/finque-status/master/assets/finque-icon.svg
+  favicon: https://raw.githubusercontent.com/finflow-io/finque-status/master/assets/favicon.svg
+  name: finque Status
+  introTitle: "**finque Status**"
+  introMessage: Hier siehst du, ob die Dienste von finque erreichbar sind. Störungen und geplante Wartungen veröffentlichen wir an dieser Stelle.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: API-Dokumentation
+      href: https://developers.finque.de
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+i18n:
+  activeIncidents: Aktuelle Störungen
+  allSystemsOperational: Alle Dienste laufen normal
+  incidentReport: "Störung #$NUMBER ansehen →"
+  activeIncidentSummary: Gemeldet am $DATE, $POSTS Meldungen
+  incidentTitle: Störung $NUMBER
+  incidentDetails: Details zur Störung
+  incidentFixed: Behoben
+  incidentOngoing: Andauernd
+  incidentOpenedAt: Gemeldet am
+  incidentClosedAt: Behoben am
+  incidentViewOnGitHub: Auf GitHub ansehen und abonnieren
+  incidentCommentSummary: Veröffentlicht am $DATE von $AUTHOR
+  incidentBack: ← Zurück zur Übersicht
+  pastIncidents: Frühere Störungen
+  pastIncidentsResolved: Behoben nach $MINUTES Minuten, $POSTS Meldungen
+  liveStatus: Aktueller Status
+  overallUptime: "Verfügbarkeit: $UPTIME"
+  overallUptimeTitle: Verfügbarkeit
+  averageResponseTime: "Mittlere Antwortzeit: $TIME ms"
+  averageResponseTimeTitle: Mittlere Antwortzeit
+  sevelDayResponseTime: Antwortzeit der letzten 7 Tage
+  responseTimeMs: Antwortzeit (ms)
+  up: Erreichbar
+  down: Ausgefallen
+  degraded: Eingeschränkt
+  ms: ms
+  loading: Wird geladen …
+  navGitHub: GitHub
+  footer: Diese Seite ist [quelloffen]($REPO) und läuft mit [Upptime](https://upptime.js.org).
+  rateLimitExceededTitle: Zu viele Abrufe
+  rateLimitExceededIntro: Du hast diese Seite in der letzten Stunde sehr oft aufgerufen. Bitte warte etwas, bevor du sie erneut lädst. Alternativ kannst du einen eigenen GitHub-Token hinterlegen.
+  rateLimitExceededWhatDoesErrorMean: Was bedeutet das?
+  rateLimitExceededErrorMeaning: Diese Seite holt den aktuellen Status direkt bei GitHub ab. GitHub erlaubt pro Internetanschluss 60 Abrufe pro Stunde, und die sind aufgebraucht.
+  rateLimitExceededErrorHowCanFix: Was kann ich tun?
+  rateLimitExceededErrorFix: Nach einer Stunde geht es wieder. Mit einem eigenen GitHub-Token sind 5.000 Abrufe pro Stunde möglich.
+  rateLimitExceededGeneratePAT: So erstellst du einen GitHub-Token
+  rateLimitExceededHasSet: Du hast einen eigenen Token hinterlegt.
+  rateLimitExceededRemoveToken: Token entfernen
+  rateLimitExceededGitHubPAT: GitHub-Token
+  rateLimitExceededCopyPastePAT: Token hier einfügen
+  rateLimitExceededSaveToken: Token speichern
+  errorTitle: Es ist ein Fehler aufgetreten
+  errorIntro: Der aktuelle Status konnte nicht geladen werden.
+  errorText: Bitte versuche es in ein paar Minuten erneut.
+  errorHome: Zur Übersicht
+  pastScheduledMaintenance: Frühere Wartungen
+  scheduledMaintenance: Geplante Wartungen
+  scheduledMaintenanceSummaryStarted: Begonnen am $DATE, Dauer $DURATION Minuten
+  scheduledMaintenanceSummaryStarts: Beginnt am $DATE, Dauer $DURATION Minuten
+  startedAt: Begonnen am
+  startsAt: Beginnt am
+  duration: Dauer
+  durationMin: $DURATION Minuten
+  incidentCompleted: Abgeschlossen
+  incidentScheduled: Geplant
+  duration24H: 24 Std.
+  duration7D: 7 Tage
+  duration30D: 30 Tage
+  duration1Y: 1 Jahr
+  durationAll: Gesamt
+  locale: de-DE
