@@ -38,9 +38,9 @@ status-website:
 i18n:
   activeIncidents: Aktuelle Störungen
   allSystemsOperational: Alle Dienste laufen normal
-  incidentReport: "Störung #$NUMBER ansehen →"
+  incidentReport: "Meldung #$NUMBER ansehen →"
   activeIncidentSummary: Gemeldet am $DATE, $POSTS Meldungen
-  incidentTitle: Störung $NUMBER
+  incidentTitle: Meldung $NUMBER
   incidentDetails: Details zur Störung
   incidentFixed: Behoben
   incidentOngoing: Andauernd
